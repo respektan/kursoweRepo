@@ -64,8 +64,19 @@ public class App {
         System.out.println("Podaj haslo: ");
         String passUser = scanner.nextLine();
 
+        boolean firstLogin = userName.equals(loginUser);
+        boolean firstPass = pass.equals(passUser);
+        boolean firstPassILogin = firstLogin && firstPass;
+
+        boolean secondLogin = user2.equals(loginUser);
+        boolean secondPass = pass2.equals(passUser);
+        boolean secondPassILogin = secondLogin && secondPass;
+
+        boolean firstOrSecond = firstPassILogin || secondPassILogin;
+
         if ( (userName.equals(loginUser) && pass.equals(passUser)) || (user2.equals(loginUser) && pass2.equals(passUser))) {
-            System.out.println("Zalogowany jako: " + userName);
+        }if (firstOrSecond){
+            System.out.println("Zalogowany jako: " + loginUser);
         } else {
             System.out.println("Blad logowania");
         }
