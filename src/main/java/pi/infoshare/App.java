@@ -39,6 +39,13 @@ public class App {
 //        System.out.println(b);
 //        double c = (double)b;
 //        System.out.println(c);
+        
+        
+        //Cwiczenie 1 - 10.10.18
+//     Scanner scanner = new Scanner(System.in);
+//     System.out.print("Podaj liczbe calkowita :");
+//     double number = scanner.nextDouble();
+//     System.out.println("Podales :" + number);
 
         //Cwiczenie 2 i 2.1 - 10.10.18
 //        Scanner scanner = new Scanner(System.in);
