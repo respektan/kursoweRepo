@@ -1,7 +1,7 @@
 package pl.infoshare;
 
 import java.util.Scanner;
-
+import Java.util.Random;
 /**
  * Hello world!
  */
@@ -89,4 +89,63 @@ public class App {
         }
         }
     }
+
+// Zadanie 15.10.18 totolotek
+ 
+        final int NUM_COUNT = 6;
+        final int MAX_NUM = 49;
+        final int MIN_NUM = 1;
+        final Scanner scanner = new Scanner(System.in);
+        final Random random = new Random();
+        int[] coupon = new int[NUM_COUNT];
+        int[] winning = new int[NUM_COUNT];
+ 
+        for(int index = 0; index < coupon.length; index++) {
+            System.out.println("Podaj liczbę nr " + (index + 1));
+            coupon[index] = scanner.nextInt();
+            if(coupon[index] > MAX_NUM || coupon[index] < MIN_NUM) {
+                System.out.println("Podana liczba jest z poza zakresu [" + MIN_NUM + ", " + MAX_NUM + "]. Podaj inną liczbę ");
+                index--;
+                continue;
+            }
+            for(int innerIndex = 0; innerIndex < index; innerIndex++) {
+                if(coupon[index] == coupon[innerIndex]) {
+                    System.out.println("Podano drugi raz liczbę " + coupon[index]);
+                    index--;
+                    break;
+                }
+            }
+        }
+ 
+        System.out.println("Losowanie " + NUM_COUNT + " liczb...");
+
+        outerLoop:
+        for(int index = 0; index < winning.length; index++) {
+            winning[index] = random.nextInt(MAX_NUM) + MIN_NUM;
+            for(int innerIndex = 0; innerIndex < index; innerIndex++) {
+                if(winning[index] == winning[innerIndex]) {
+                    index--;
+                    continue outerLoop;
+                }
+            }
+            System.out.print(winning[index]);
+            if(index == (NUM_COUNT -1)) {
+                System.out.print(".\n");
+            } else {
+                System.out.print(", ");
+            }
+        }
+ 
+        int countWinning = 0;
+        for (int aWinning : winning) {
+            for (int aCoupon : coupon) {
+                if (aCoupon == aWinning) {
+                    countWinning++;
+                }
+            }
+        }
+ 
+        System.out.println("Trafiono " + countWinning + " liczb.");
+    }
+
 
