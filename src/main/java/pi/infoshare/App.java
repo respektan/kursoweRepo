@@ -146,6 +146,55 @@ public class App {
         }
  
         System.out.println("Trafiono " + countWinning + " liczb.");
+
+
+//Zadanie 22.10.18
+
+
+        URL url = new URL("https://www.w3.org/TR/PNG/iso_8859-1.txt");
+        Scanner scanner = new Scanner(url.openStream());
+        while(scanner.hasNextLine()) {
+            System.out.println(scanner.nextLine());
+        }
+        PrintWriter letters = new PrintWriter("/home/aka/Desktop/letters.txt");
+        PrintWriter numbers = new PrintWriter("/home/aka/Desktop/numbers.txt");
+        String line;
+        while(scanner.hasNextLine()){
+            line = scanner.nextLine();
+            if(Character.isDigit(line.charAt(0))){
+                numbers.println(numbers);
+            }
+            else {
+                letters.println(letters);
+
+            }
+        }
+            letters.close();
+            numbers.close();
+
+
+
+
+        }
     }
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
 
 
