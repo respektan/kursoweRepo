@@ -1,206 +1,156 @@
 package pl.infoshare;
 
-import java.io.PrintWriter;
-import java.net.URL;
-import java.util.Scanner;
-import java.util.Random;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.List;
-/**
- * Hello world!
- */
-public class App {
-    public static void main(String[] args) {
+import java.util.Scanner;
 
-//
-//        //Zadanie 08.10.18
-//        byte a = 2;
-//        byte b = 2;
-//        byte c = 0;
-//        System.out.println("Wynik dodawania to: " + (a + b) );
-//        System.out.println("Wynik odejmowania to: " + (a - b) );
-//        System.out.println("Wynik dzielenia to: " + (a / b) );
-//        System.out.println("Wynik mnozenia to: " + (a * b) );
-//
-//        //Zadanie 1.1  10.10.18
-//        Scanner scanner = new Scanner(System.in);
-//        System.out.print("Podaj liczbe calkowita: ");
-//        double ageNew = scanner.nextDouble();
-//        System.out.println("Podales :" + ageNew);
-//
-//        //Zadanie 1.2 10.10.18
-//        Scanner scanner = new Scanner(System.in);
-//        System.out.print("Wprowadz ciag znakow: ");
-//        String a = scanner.nextLine();
-//        int b = Integer.valueOf(a);
-//        System.out.println("Wprowadziles: " + b);
-//
-//
-//        //Cwiczenia z rzutowania
-//        char a = 'a';
-//        System.out.println(a);
-//        int b = (int)a;
-//        System.out.println(b);
-//        double c = (double)b;
-//        System.out.println(c);
+
+public class Zad2 {
+
+    public static void main(String[] args) throws IOException {
         
-        
-        //Cwiczenie 1 - 10.10.18
-//     Scanner scanner = new Scanner(System.in);
-//     System.out.print("Podaj liczbe calkowita :");
-//     double number = scanner.nextDouble();
-//     System.out.println("Podales :" + number);
-
-        //Cwiczenie 2 i 2.1 - 10.10.18
-//        Scanner scanner = new Scanner(System.in);
-//        System.out.print("Podaj swoj wiek (w latach) : ");
-//        int a = scanner.nextInt();
-//        if (a >= 18 && a <= 123) {
-//            System.out.println("Jestes pelnoletni!");
-//        }else if (a > 123 ){
-//            System.out.print("Podeles nieprawidlowa wartosc liczbowa! ");
-//        }else {
-//            System.out.println("Nie jestes pelnoletni!");
-//        }
-
-        //Cwiczenie 3 - 10.10.18
-        Scanner scanner = new Scanner(System.in);
-        String userName = "admin";
-        String pass = "secret";
-        String user2 = "aka";
-        String pass2 = "test";
-
-        System.out.println("Podaj login: ");
-        String loginUser = scanner.nextLine();
-        System.out.println("Podaj haslo: ");
-        String passUser = scanner.nextLine();
-
-        boolean firstLogin = userName.equals(loginUser);
-        boolean firstPass = pass.equals(passUser);
-        boolean firstPassILogin = firstLogin && firstPass;
-
-        boolean secondLogin = user2.equals(loginUser);
-        boolean secondPass = pass2.equals(passUser);
-        boolean secondPassILogin = secondLogin && secondPass;
-
-        boolean firstOrSecond = firstPassILogin || secondPassILogin;
-
-        if ( (userName.equals(loginUser) && pass.equals(passUser)) || (user2.equals(loginUser) && pass2.equals(passUser))) {
-        }if (firstOrSecond){
-            System.out.println("Zalogowany jako: " + loginUser);
-        } else {
-            System.out.println("Blad logowania");
-        }
-        }
+        start();
     }
 
-// Zadanie 15.10.18 totolotek
- 
-        final int NUM_COUNT = 6;
-        final int MAX_NUM = 49;
-        final int MIN_NUM = 1;
-        final Scanner scanner = new Scanner(System.in);
-        final Random random = new Random();
-        int[] coupon = new int[NUM_COUNT];
-        int[] winning = new int[NUM_COUNT];
- 
-        for(int index = 0; index < coupon.length; index++) {
-            System.out.println("Podaj liczbę nr " + (index + 1));
-            coupon[index] = scanner.nextInt();
-            if(coupon[index] > MAX_NUM || coupon[index] < MIN_NUM) {
-                System.out.println("Podana liczba jest z poza zakresu [" + MIN_NUM + ", " + MAX_NUM + "]. Podaj inną liczbę ");
-                index--;
-                continue;
-            }
-            for(int innerIndex = 0; innerIndex < index; innerIndex++) {
-                if(coupon[index] == coupon[innerIndex]) {
-                    System.out.println("Podano drugi raz liczbę " + coupon[index]);
-                    index--;
-                    break;
-                }
-            }
-        }
- 
-        System.out.println("Losowanie " + NUM_COUNT + " liczb...");
+    private static void start() throws IOException {
+   
+     printMenu();
 
-        outerLoop:
-        for(int index = 0; index < winning.length; index++) {
-            winning[index] = random.nextInt(MAX_NUM) + MIN_NUM;
-            for(int innerIndex = 0; innerIndex < index; innerIndex++) {
-                if(winning[index] == winning[innerIndex]) {
-                    index--;
-                    continue outerLoop;
-                }
-            }
-            System.out.print(winning[index]);
-            if(index == (NUM_COUNT -1)) {
-                System.out.print(".\n");
-            } else {
-                System.out.print(", ");
-            }
-        }
- 
-        int countWinning = 0;
-        for (int aWinning : winning) {
-            for (int aCoupon : coupon) {
-                if (aCoupon == aWinning) {
-                    countWinning++;
-                }
-            }
-        }
- 
-        System.out.println("Trafiono " + countWinning + " liczb.");
-
-
-//Zadanie 22.10.18
-
-
-        URL url = new URL("https://www.w3.org/TR/PNG/iso_8859-1.txt");
-        Scanner scanner = new Scanner(url.openStream());
-        while(scanner.hasNextLine()) {
-            System.out.println(scanner.nextLine());
-        }
-        PrintWriter letters = new PrintWriter("/home/aka/Desktop/letters.txt");
-        PrintWriter numbers = new PrintWriter("/home/aka/Desktop/numbers.txt");
-        String line;
-        while(scanner.hasNextLine()){
-            line = scanner.nextLine();
-            if(Character.isDigit(line.charAt(0))){
-                numbers.println(numbers);
-            }
-            else {
-                letters.println(letters);
-
-            }
-        }
-            letters.close();
-            numbers.close();
-
-
-
-
-        }
+        String userChoice = readUserInput();
+        handleUserChoice(userChoice);
     }
-
-
-
-
     
+    private static void handleUserChoice(String choice) throws IOException {
+        switch (choice) {
+            case "1": {
+                createNewUser();
+                break;
+            }
+            case "2": {
+             
+                List<String> fileLines = readLinesFromFile();
+                User[] userArray = generateUserArray(fileLines);
+                printUsersFromArray(userArray);
+
+                start();
+                break;
+            }
+            case "0": {
+                break;
+            }
+            default: {
+                printError();
+                break;
+            }
+        }
+    }
+
+    private static void createNewUser() throws IOException {
+        User user = generateUserFromUserInput();
+        saveToFile(user);
+        printSuccess();
+        shouldAddAnotherUser();
+    }
+    private static void shouldAddAnotherUser() throws IOException {
+        System.out.println("Chcesz dodac kolejnego uzytkownika? [Y/N]");
+        String input = readUserInput();
+        if (input.equals("Y")) {
+            createNewUser();
+        } else if (input.equals("N")) {
+            start();
+        } else {
+            System.out.println("Bledna komenda ");
+            shouldAddAnotherUser();
+        }
+    }
+
+    private static void printUsersFromArray(User[] userArray) {
+        for (User user : userArray) {
+            System.out.println("Username: " + user.getUsername() + "\t" + "Password: " + user.getPassword() + "\t" + "Usertype: " + user.getUsertype());
+        }
+    }
+
+    private static User[] generateUserArray(List<String> linesFromFile) {
+        User[] userArray = new User[linesFromFile.size()];
+
+        for (int i = 0; i < userArray.length; i++) {
+            userArray[i] = generateUserFromFileInput(linesFromFile.get(i));
+        }
+        return userArray;
+    }
+
+    private static List<String> readLinesFromFile() throws IOException {
+        return Files.readAllLines(Paths.get("./zad5.txt"));
+    }
+
+    private static void printMenu() {
+        System.out.println();
+        System.out.println("========== MENU ==========");
+        System.out.println("1.\t Dodaj uzytkownika.");
+        System.out.println("2.\t Wyświetl uzytkowników.");
+        System.out.println();
+        System.out.println("0.\t Wyjdz z programu.");
+        System.out.print("Wybor: ");
+    }
+
+    private static void printSuccess() {
+        System.out.println("WYKONANO POPRAWNIE!");
+    }
 
 
+    private static void printError() {
+        System.out.println("BLAD! Zly wybor. Zrestartuj program");
+    }
 
+    private static User generateUserFromFileInput(String lineFromFile) {
+        String[] userSplitted = lineFromFile.split(";");
+        return new User(userSplitted[0], userSplitted[1], userSplitted[2]);
+    }
 
+    private static void saveToFile(User... users) throws IOException {
+        for (User user : users) {
+            String line = user.getUsername() + ";" + user.getPassword() + ";" + user.getUsertype() + "\n";
 
+            Path path = Paths.get("./zad5.txt");
+            if (Files.exists(path)) {
+                Files.write(path, line.getBytes(), StandardOpenOption.APPEND);
+            } else {
+                Files.write(path, line.getBytes());
+            }
+        }
+    }
 
+    private static User generateUserFromUserInput() {
+        String username = getFieldFromUserInput("user name");
+        String password = getFieldFromUserInput("password");
+        String userType = null;
+        boolean isValidUserType;
+        while (!(isValidUserType = validUserType(userType))) {
+            userType = getFieldFromUserInput("user type: [user / admin]");
+            if (!isValidUserType) {
+                System.out.println("Wprowadziles bledny typ uzytkownika!");
+            }
+        }
+        return new User(username, password, userType);
+    }
 
+    private static String getFieldFromUserInput(String field) {
+        System.out.print("Wprowadz " + field + ": ");
+        return readUserInput();
+    }
 
+    private static String readUserInput() {
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextLine();
+    }
 
+    private static boolean validUserType(String userType) {
+        return userType != null && (userType.equals("user") || userType.equals("admin"));
+    }
 }
-
-
-
-
 
 
